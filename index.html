@@ -106,7 +106,15 @@
   .pgrid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:14px;}
   .pcard{background:#fff;border-radius:10px;padding:22px 16px;box-shadow:0 3px 12px rgba(0,0,0,.25);display:flex;flex-direction:column;gap:8px;transition:transform .15s;}
   .pcard:hover{transform:translateY(-4px);}
-  .pcard .picon{font-size:2rem;}
+  .pcard{padding:0;overflow:hidden;position:relative;}
+  .pcard .pimg{width:100%;height:170px;object-fit:cover;background:#f5f5f5;display:block;}
+  .pcard .pbody{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .pcard .picon{font-size:2rem;text-align:center;padding-top:18px;}
+  .price{color:#0a7d33;font-weight:800;font-size:1rem;margin:0;}
+  .price small{color:#888;font-weight:600;font-size:.7rem;}
+  .badge{position:absolute;top:10px;left:10px;background:var(--orange);color:#fff;font-size:.7rem;font-weight:700;padding:3px 9px;border-radius:20px;z-index:1;}
+  .search-bar{max-width:640px;margin:0 auto 18px;display:flex;align-items:center;background:#fff;border-radius:24px;padding:9px 16px;gap:10px;}
+  .search-bar input{flex:1;border:none;outline:none;font-size:.98rem;background:transparent;color:#222;}
   .pcard .pname{font-size:.95rem;font-weight:700;color:#222;line-height:1.3;}
   .pcard .pdesc{font-size:.82rem;color:#666;flex:1;}
   .price-btn{background:var(--green);color:#fff;text-align:center;padding:9px 0;border-radius:24px;font-weight:700;font-size:.82rem;}
@@ -168,6 +176,11 @@
 <div class="shop" id="products">
   <h2>Machinery We Supply</h2>
   <p class="sub">Reliable equipment for mines, farms, construction sites and water projects</p>
+  <p class="sub" style="margin:-22px 0 26px;font-size:.82rem;">Indicative prices — final quote depends on your specs. Trade &amp; wholesale discounts available.</p>
+  <div class="search-bar">
+    <span aria-hidden="true">&#128269;</span>
+    <input type="search" id="psearch" placeholder="Search machines: pump, generator, mixer, welder..." oninput="applyFilter()">
+  </div>
   <div class="cats">
     <button class="cat-chip active" data-cat="all" onclick="filterCat('all', this)">All</button>
     <button class="cat-chip" data-cat="pumps" onclick="filterCat('pumps', this)">Water Pumps</button>
@@ -177,7 +190,7 @@
     <button class="cat-chip" data-cat="farm" onclick="filterCat('farm', this)">Farm &amp; Irrigation</button>
   </div>
   <div class="pgrid" id="pgrid"></div>
-  <div class="no-results" id="noresults">No products in this category.</div>
+  <div class="no-results" id="noresults">Nothing matched — <a href="https://wa.me/256782461461" style="color:var(--amber)">ask us on WhatsApp</a>, we source machines on order.</div>
 </div>
 
 <section id="why">
@@ -230,40 +243,48 @@
 <script>
 const WA = "https://wa.me/256782461461?text=";
 const products = [
- {cat:"pumps", icon:"💧", name:"Submersible Water Pumps", desc:"Deep borehole and well pumps for reliable water supply to homes, farms and schemes."},
- {cat:"pumps", icon:"💦", name:"High-Head Water Pumps", desc:"Long-distance transfer pumps for large-scale water projects, pumping over many kilometres."},
- {cat:"pumps", icon:"🚰", name:"Diesel Water Pump Sets", desc:"Engine-driven pump sets for sites without electricity — irrigation and construction duty."},
- {cat:"pumps", icon:"🌀", name:"Centrifugal Surface Pumps", desc:"Clean-water surface pumps for tanks, boosting and general transfer work."},
- {cat:"power", icon:"⚡", name:"Diesel Generators", desc:"Standby and prime power gensets for workshops, sites, farms and businesses."},
- {cat:"power", icon:"🔋", name:"Petrol Generators", desc:"Portable petrol generators for home backup, events and field jobs."},
- {cat:"power", icon:"🔇", name:"Silent-Type Generators", desc:"Soundproofed generators for hospitals, offices and residential estates."},
- {cat:"construction", icon:"🏗️", name:"Concrete Mixers", desc:"Site mixers for construction projects, built for daily heavy use."},
- {cat:"construction", icon:"📳", name:"Concrete Vibrators", desc:"Poker vibrators for solid, bubble-free concrete pours."},
- {cat:"construction", icon:"🧱", name:"Plate Compactors", desc:"Soil and paving compactors for roadworks and building sites."},
- {cat:"workshop", icon:"🔧", name:"Welding Machines", desc:"Arc, inverter and welding plants for workshops and field fabrication."},
- {cat:"workshop", icon:"🌬️", name:"Air Compressors", desc:"Compressors for tools, spray painting and construction work."},
- {cat:"workshop", icon:"⚙️", name:"Angle Grinders & Power Tools", desc:"Grinders, drills and site power tools from trusted brands."},
- {cat:"farm", icon:"🌾", name:"Irrigation Pump Systems", desc:"Pump and pipe solutions for farms and irrigation schemes."},
- {cat:"farm", icon:"🌽", name:"Posho Mills & Processing", desc:"Milling and processing machinery for farms and village enterprises."},
- {cat:"farm", icon:"🔩", name:"Spare Parts & Servicing", desc:"Genuine spares, repairs and servicing for the machines we sell."}
+ {cat:"pumps", img:"pump-sub.jpg", badge:"POPULAR", name:"Submersible Water Pumps", desc:"Deep borehole and well pumps for homes, farms and water schemes.", price:"3,800,000"},
+ {cat:"pumps", img:"pump-high.jpg", badge:"DEAL", name:"High-Head Petrol Pumps", desc:"Long-distance transfer pumps pumping water over many kilometres.", price:"1,250,000"},
+ {cat:"pumps", img:"pump-diesel.jpg", badge:"", name:"Diesel Water Pump Sets", desc:"Engine-driven pump sets for sites without electricity.", price:"2,900,000"},
+ {cat:"pumps", img:"pump-surface.jpg", badge:"", name:"Surface & Booster Pumps", desc:"Clean-water surface pumps for tanks, boosting and transfer.", price:"850,000"},
+ {cat:"power", img:"gen-diesel.jpg", badge:"BEST SELLER", name:"Diesel Generators", desc:"Standby and prime power gensets for workshops, sites and farms.", price:"9,500,000"},
+ {cat:"power", img:"gen-petrol.jpg", badge:"", name:"Petrol Generators", desc:"Portable generators for home backup, events and field jobs.", price:"2,400,000"},
+ {cat:"power", img:"gen-silent.jpg", badge:"PREMIUM", name:"Silent-Type Generators", desc:"Soundproofed gensets for hospitals, offices and estates.", price:"16,500,000"},
+ {cat:"construction", img:"mixer.jpg", badge:"", name:"Concrete Mixers", desc:"Site mixers for construction projects, built for daily heavy use.", price:"4,900,000"},
+ {cat:"construction", img:"vibrator.jpg", badge:"", name:"Concrete Vibrators", desc:"Poker vibrators for solid, bubble-free concrete pours.", price:"1,100,000"},
+ {cat:"construction", img:"compactor.jpg", badge:"", name:"Plate Compactors", desc:"Soil and paving compactors for roadworks and building sites.", price:"6,800,000"},
+ {cat:"workshop", img:"welder.jpg", badge:"HOT", name:"Welding Machines", desc:"Arc and inverter welding plants for workshops and fabrication.", price:"750,000"},
+ {cat:"workshop", img:"compressor.jpg", badge:"", name:"Air Compressors", desc:"Compressors for tools, spray painting and construction work.", price:"2,800,000"},
+ {cat:"workshop", img:"grinder.jpg", badge:"", name:"Angle Grinders & Power Tools", desc:"Grinders, drills and site power tools from trusted brands.", price:"180,000"},
+ {cat:"farm", img:"tractor.jpg", badge:"NEW", name:"Walking Tractors / Power Tillers", desc:"Compact diesel tillers for smallholder farms and gardens.", price:"7,500,000"},
+ {cat:"farm", img:"posho.jpg", badge:"", name:"Posho Mills & Processing", desc:"Milling and processing machinery for farms and village enterprises.", price:"3,200,000"},
+ {cat:"farm", icon:"\u{1F529}", badge:"", name:"Spare Parts & Servicing", desc:"Genuine spares, repairs and servicing for the machines we sell.", price:"0"}
 ];
 const grid = document.getElementById('pgrid');
 function card(p){
-  const msg = encodeURIComponent("Hello Nuwe Rugaba Machinery, I need a price for: " + p.name);
-  return `<div class="pcard" data-cat="${p.cat}">
-    <div class="picon">${p.icon}</div>
-    <div class="pname">${p.name}</div>
-    <div class="pdesc">${p.desc}</div>
-    <a class="price-btn" href="${WA}${msg}" target="_blank" rel="noopener">Request Price</a>
-  </div>`;
+  const priceLine = p.price === "0" ? '<p class="price">Ask for a quote</p>' : '<p class="price">UGX ' + p.price + ' <small>from</small></p>';
+  const imgBlock = p.img ? '<img class="pimg" src="assets/products/' + p.img + '" alt="' + p.name + ' Kampala" loading="lazy">' : '<div class="picon">' + p.icon + '</div>';
+  const badge = p.badge ? '<span class="badge">' + p.badge + '</span>' : '';
+  const msg = encodeURIComponent("Hello Nuwe Rugaba Machinery, I need a price for: " + p.name + (p.price !== "0" ? " (from UGX " + p.price + ")" : "") + ". My requirements are:");
+  return '<div class="pcard" data-cat="' + p.cat + '" data-name="' + p.name.toLowerCase() + '">' + badge + imgBlock +
+    '<div class="pbody"><div class="pname">' + p.name + '</div><div class="pdesc">' + p.desc + '</div>' + priceLine +
+    '<a class="price-btn" href="' + WA + msg + '" target="_blank" rel="noopener">Request Price on WhatsApp</a></div></div>';
 }
 grid.innerHTML = products.map(card).join('');
+let activeCat = 'all';
 function filterCat(cat, btn){
   document.querySelectorAll('.cat-chip').forEach(c=>c.classList.remove('active'));
   btn.classList.add('active');
+  activeCat = cat;
+  applyFilter();
+}
+function applyFilter(){
+  const q = document.getElementById('psearch').value.trim().toLowerCase();
   let shown = 0;
   document.querySelectorAll('.pcard').forEach(el=>{
-    const show = cat==='all' || el.dataset.cat===cat;
+    const okCat = activeCat==='all' || el.dataset.cat===activeCat;
+    const okQ = !q || el.dataset.name.indexOf(q) !== -1;
+    const show = okCat && okQ;
     el.style.display = show ? 'flex' : 'none';
     if(show) shown++;
   });
