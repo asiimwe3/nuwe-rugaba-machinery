@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://nuwe-rugaba-machinery.vercel.app/sitemap.xml
