@@ -116,20 +116,9 @@
   .search-bar{max-width:640px;margin:0 auto 18px;display:flex;align-items:center;background:#fff;border-radius:24px;padding:9px 16px;gap:10px;}
   .search-bar input{flex:1;border:none;outline:none;font-size:.98rem;background:transparent;color:#222;}
   .pcard .pname{font-size:.95rem;font-weight:700;color:#222;line-height:1.3;}
-  .spec-chips{display:flex;flex-wrap:wrap;gap:5px;}
-  .spec-chips span{font-size:.68rem;color:#333;background:#f3f4f6;border:1px solid #e5e7eb;padding:3px 8px;border-radius:4px;}
-  .pcard .price{font-size:1.12rem !important;font-weight:800;color:#ff6a00 !important;margin:2px 0 0;}
-  .pcard .price small{font-weight:600;color:#8b8b8b;font-size:.7rem;}
-  .moq-line{font-size:.74rem;color:#333;border-top:1px solid #eee;margin-top:6px;padding-top:6px;display:flex;justify-content:space-between;align-items:center;}
-  .moq-line .neg{color:#0a7d32;font-weight:700;}
-  .rfq-box{background:linear-gradient(135deg,#ff6a00,#ff9d3c);border-radius:12px;padding:22px 18px;margin:26px auto 8px;color:#fff;box-shadow:0 6px 22px rgba(255,106,0,.35);}
-  .rfq-box h3{font-size:1.05rem;font-weight:800;margin:0 0 4px;}
-  .rfq-box p{font-size:.8rem;margin:0 0 12px;opacity:.95;}
-  .rfq-box textarea{width:100%;min-height:64px;border:none;border-radius:8px;padding:10px 12px;font-size:.9rem;resize:vertical;margin-bottom:10px;box-sizing:border-box;}
-  .rfq-btn{display:block;width:100%;background:#0d0f14;color:#fff;border:none;border-radius:8px;padding:12px;font-size:.95rem;font-weight:800;cursor:pointer;}
   .pcard .pdesc{font-size:.82rem;color:#666;flex:1;}
-  .price-btn{background:#ff6a00;color:#fff;text-align:center;padding:10px 0;border-radius:6px;font-weight:800;font-size:.84rem;letter-spacing:.2px;}
-  .price-btn:hover{background:#e85f00;}
+  .price-btn{background:var(--green);color:#fff;text-align:center;padding:9px 0;border-radius:24px;font-weight:700;font-size:.82rem;}
+  .price-btn:hover{background:#1fb958;}
   .no-results{max-width:1100px;margin:0 auto;color:#fff;display:none;padding:20px;text-align:center;}
   .strip{background:var(--steel);color:#e8edf5;padding:34px 20px;}
   .strip-inner{max-width:1100px;margin:0 auto;display:flex;gap:28px;justify-content:space-around;flex-wrap:wrap;text-align:center;}
@@ -187,17 +176,11 @@
 <div class="shop" id="products">
   <h2>Machinery We Supply</h2>
   <p class="sub">Reliable equipment for mines, farms, construction sites and water projects</p>
-  <p class="sub" style="margin:-22px 0 26px;font-size:.82rem;">Indicative wholesale prices — final quote depends on your specs. MOQ 1 unit · Negotiable · Trade &amp; volume discounts available.</p>
+  <p class="sub" style="margin:-22px 0 26px;font-size:.82rem;">Indicative prices — final quote depends on your specs. Trade &amp; wholesale discounts available.</p>
   <div class="search-bar">
     <span aria-hidden="true">&#128269;</span>
     <input type="search" id="psearch" placeholder="Search machines: pump, generator, mixer, welder..." oninput="applyFilter()">
   </div>
-<div class="rfq-box">
-  <h3>Request a Quotation — one request, honest quote</h3>
-  <p>Tell us the machine and the work it must do. We reply with the right size, specs and trade price on WhatsApp.</p>
-  <textarea id="rfqtext" placeholder="e.g. I need a diesel generator for a workshop in Fort Portal, and a water pump for a 30m borehole..."></textarea>
-  <button class="rfq-btn" onclick="sendRFQ()">Send RFQ on WhatsApp</button>
-</div>
   <div class="cats">
     <button class="cat-chip active" data-cat="all" onclick="filterCat('all', this)">All</button>
     <button class="cat-chip" data-cat="pumps" onclick="filterCat('pumps', this)">Water Pumps</button>
@@ -261,61 +244,32 @@
 <script>
 const WA = "https://wa.me/256782461461?text=";
 const products = [
- {cat:"pumps", img:"submersible-pump.webp", badge:"POPULAR", name:"Submersible Water Pumps", desc:"Deep borehole and well pumps for homes, farms and water schemes.", price:"3,800,000"},
- {cat:"pumps", img:"high-head-pump.webp", badge:"DEAL", name:"High-Head Petrol Pumps", desc:"Long-distance transfer pumps pumping water over many kilometres.", price:"1,250,000"},
- {cat:"pumps", img:"diesel-water-pump.webp", badge:"", name:"Diesel Water Pump Sets", desc:"Engine-driven pump sets for sites without electricity.", price:"2,900,000"},
- {cat:"pumps", img:"centrifugal-pump.webp", badge:"", name:"Surface & Booster Pumps", desc:"Clean-water surface pumps for tanks, boosting and transfer.", price:"850,000"},
- {cat:"power", img:"diesel-generator.webp", badge:"BEST SELLER", name:"Diesel Generators", desc:"Standby and prime power gensets for workshops, sites and farms.", price:"9,500,000"},
- {cat:"power", img:"petrol-generator.webp", badge:"", name:"Petrol Generators", desc:"Portable generators for home backup, events and field jobs.", price:"2,400,000"},
- {cat:"power", img:"silent-generator.webp", badge:"PREMIUM", name:"Silent-Type Generators", desc:"Soundproofed gensets for hospitals, offices and estates.", price:"16,500,000"},
- {cat:"construction", img:"concrete-mixer.webp", badge:"", name:"Concrete Mixers", desc:"Site mixers for construction projects, built for daily heavy use.", price:"4,900,000"},
- {cat:"construction", img:"concrete-vibrator.webp", badge:"", name:"Concrete Vibrators", desc:"Poker vibrators for solid, bubble-free concrete pours.", price:"1,100,000"},
- {cat:"construction", img:"plate-compactor.webp", badge:"", name:"Plate Compactors", desc:"Soil and paving compactors for roadworks and building sites.", price:"6,800,000"},
- {cat:"workshop", img:"welding-machine.webp", badge:"HOT", name:"Welding Machines", desc:"Arc and inverter welding plants for workshops and fabrication.", price:"750,000"},
- {cat:"workshop", img:"air-compressor.webp", badge:"", name:"Air Compressors", desc:"Compressors for tools, spray painting and construction work.", price:"2,800,000"},
- {cat:"workshop", img:"angle-grinder.webp", badge:"", name:"Angle Grinders & Power Tools", desc:"Grinders, drills and site power tools from trusted brands.", price:"180,000"},
- {cat:"farm", img:"walking-tractor.webp", badge:"NEW", name:"Walking Tractors / Power Tillers", desc:"Compact diesel tillers for smallholder farms and gardens.", price:"7,500,000"},
- {cat:"farm", img:"posho-mill.webp", badge:"", name:"Posho Mills & Processing", desc:"Milling and processing machinery for farms and village enterprises.", price:"3,200,000"},
+ {cat:"pumps", img:"pump-sub.jpg", badge:"POPULAR", name:"Submersible Water Pumps", desc:"Deep borehole and well pumps for homes, farms and water schemes.", price:"3,800,000"},
+ {cat:"pumps", img:"pump-high.jpg", badge:"DEAL", name:"High-Head Petrol Pumps", desc:"Long-distance transfer pumps pumping water over many kilometres.", price:"1,250,000"},
+ {cat:"pumps", img:"pump-diesel.jpg", badge:"", name:"Diesel Water Pump Sets", desc:"Engine-driven pump sets for sites without electricity.", price:"2,900,000"},
+ {cat:"pumps", img:"pump-surface.jpg", badge:"", name:"Surface & Booster Pumps", desc:"Clean-water surface pumps for tanks, boosting and transfer.", price:"850,000"},
+ {cat:"power", img:"gen-diesel.jpg", badge:"BEST SELLER", name:"Diesel Generators", desc:"Standby and prime power gensets for workshops, sites and farms.", price:"9,500,000"},
+ {cat:"power", img:"gen-petrol.jpg", badge:"", name:"Petrol Generators", desc:"Portable generators for home backup, events and field jobs.", price:"2,400,000"},
+ {cat:"power", img:"gen-silent.jpg", badge:"PREMIUM", name:"Silent-Type Generators", desc:"Soundproofed gensets for hospitals, offices and estates.", price:"16,500,000"},
+ {cat:"construction", img:"mixer.jpg", badge:"", name:"Concrete Mixers", desc:"Site mixers for construction projects, built for daily heavy use.", price:"4,900,000"},
+ {cat:"construction", img:"vibrator.jpg", badge:"", name:"Concrete Vibrators", desc:"Poker vibrators for solid, bubble-free concrete pours.", price:"1,100,000"},
+ {cat:"construction", img:"compactor.jpg", badge:"", name:"Plate Compactors", desc:"Soil and paving compactors for roadworks and building sites.", price:"6,800,000"},
+ {cat:"workshop", img:"welder.jpg", badge:"HOT", name:"Welding Machines", desc:"Arc and inverter welding plants for workshops and fabrication.", price:"750,000"},
+ {cat:"workshop", img:"compressor.jpg", badge:"", name:"Air Compressors", desc:"Compressors for tools, spray painting and construction work.", price:"2,800,000"},
+ {cat:"workshop", img:"grinder.jpg", badge:"", name:"Angle Grinders & Power Tools", desc:"Grinders, drills and site power tools from trusted brands.", price:"180,000"},
+ {cat:"farm", img:"tractor.jpg", badge:"NEW", name:"Walking Tractors / Power Tillers", desc:"Compact diesel tillers for smallholder farms and gardens.", price:"7,500,000"},
+ {cat:"farm", img:"posho.jpg", badge:"", name:"Posho Mills & Processing", desc:"Milling and processing machinery for farms and village enterprises.", price:"3,200,000"},
  {cat:"farm", icon:"\u{1F529}", badge:"", name:"Spare Parts & Servicing", desc:"Genuine spares, repairs and servicing for the machines we sell.", price:"0"}
 ];
 const grid = document.getElementById('pgrid');
-const specs = {
- "Submersible Water Pumps":["Deep well","Stainless body"],
- "High-Head Petrol Pumps":["Long-distance","Petrol engine"],
- "Diesel Water Pump Sets":["Engine-driven","No power needed"],
- "Surface & Booster Pumps":["Tank & booster","Clean water"],
- "Diesel Generators":["Standby & prime","Heavy duty"],
- "Petrol Generators":["Portable","Backup power"],
- "Silent-Type Generators":["Soundproof","Clinics & offices"],
- "Concrete Mixers":["Site daily use","Heavy build"],
- "Concrete Vibrators":["Poker type","Bubble-free pours"],
- "Plate Compactors":["Soil & paving","Roadworks"],
- "Welding Machines":["Arc & inverter","Fabrication"],
- "Air Compressors":["Tools & spray","Site work"],
- "Angle Grinders & Power Tools":["Grind & cut","Site tools"],
- "Walking Tractors / Power Tillers":["Diesel tiller","Smallholder farms"],
- "Posho Mills & Processing":["Milling","Village enterprise"],
- "Spare Parts & Servicing":["Genuine spares","Repairs"]
-};
 function card(p){
-  const priceLine = p.price === "0"
-    ? '<p class="price">Ask for a quote</p>'
-    : '<p class="price">UGX ' + p.price + ' <small>/ unit, from</small></p>';
+  const priceLine = p.price === "0" ? '<p class="price">Ask for a quote</p>' : '<p class="price">UGX ' + p.price + ' <small>from</small></p>';
   const imgBlock = p.img ? '<img class="pimg" src="assets/products/' + p.img + '" alt="' + p.name + ' Fort Portal" loading="lazy">' : '<div class="picon">' + p.icon + '</div>';
   const badge = p.badge ? '<span class="badge">' + p.badge + '</span>' : '';
-  const chips = (specs[p.name]||[]).map(s=>'<span>'+s+'</span>').join('');
-  const msg = encodeURIComponent("Hello Nuwe Rugaba Machinery, I want to send an inquiry about: " + p.name + (p.price !== "0" ? " (listed from UGX " + p.price + " / unit)" : "") + ".\nMy requirements / specs:");
+  const msg = encodeURIComponent("Hello Nuwe Rugaba Machinery, I need a price for: " + p.name + (p.price !== "0" ? " (from UGX " + p.price + ")" : "") + ". My requirements are:");
   return '<div class="pcard" data-cat="' + p.cat + '" data-name="' + p.name.toLowerCase() + '">' + badge + imgBlock +
-    '<div class="pbody"><div class="pname">' + p.name + '</div><div class="pdesc">' + p.desc + '</div>' +
-    '<div class="spec-chips">' + chips + '</div>' + priceLine +
-    '<div class="moq-line"><span>MOQ: 1 unit</span><span class="neg">Negotiable</span></div>' +
-    '<a class="price-btn" href="' + WA + msg + '" target="_blank" rel="noopener">Send Inquiry on WhatsApp</a></div></div>';
-}
-function sendRFQ(){
-  const t = document.getElementById('rfqtext').value.trim();
-  if(!t){ document.getElementById('rfqtext').focus(); return; }
-  const msg = encodeURIComponent("Hello Nuwe Rugaba Machinery, I am requesting a quotation.\nMachine / requirements: " + t);
-  window.open(WA + msg, '_blank');
+    '<div class="pbody"><div class="pname">' + p.name + '</div><div class="pdesc">' + p.desc + '</div>' + priceLine +
+    '<a class="price-btn" href="' + WA + msg + '" target="_blank" rel="noopener">Request Price on WhatsApp</a></div></div>';
 }
 grid.innerHTML = products.map(card).join('');
 let activeCat = 'all';
@@ -338,6 +292,5 @@ function applyFilter(){
   document.getElementById('noresults').style.display = shown ? 'none' : 'block';
 }
 </script>
-<div style="text-align:center;color:#8a95a6;font-size:.72rem;padding:14px 20px;background:#0d0f14">Product photos: Wikimedia Commons &amp; Flickr contributors — CC BY / CC BY-SA / CC0 &amp; public domain. Full credits: <a href="CREDITS.md" style="color:#ffb347">photo credits</a></div>
 </body>
 </html>
