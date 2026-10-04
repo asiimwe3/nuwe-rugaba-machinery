@@ -134,6 +134,17 @@
   .footer a{color:var(--amber);}
   .footer img{width:56px;height:56px;border-radius:10px;border:2px solid var(--orange);margin-bottom:10px;}
   .footer .ft-brand{color:#fff;font-weight:800;font-size:1.05rem;margin-bottom:6px;}
+
+/* Gallery */
+.gallery-grid{max-width:1100px;margin:18px auto 0;display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:0 20px;}
+@media(min-width:700px){.gallery-grid{grid-template-columns:repeat(4,1fr);}}
+.g-item{position:relative;overflow:hidden;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.18);background:#222;display:block;}
+.g-item img{width:100%;height:100%;object-fit:cover;aspect-ratio:1/1;display:block;transition:transform .3s;}
+.g-item:hover img{transform:scale(1.05);}
+.g-item figcaption{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(0,0,0,.75));color:#fff;font-size:.72rem;padding:22px 10px 8px;font-weight:600;}
+.lightbox{position:fixed;inset:0;background:rgba(10,10,14,.92);display:none;align-items:center;justify-content:center;z-index:99;padding:20px;}
+.lightbox:target{display:flex;}
+.lightbox img{max-width:94vw;max-height:92vh;border-radius:10px;box-shadow:0 8px 40px rgba(0,0,0,.6);}
 </style>
 </head>
 <body>
@@ -146,6 +157,7 @@
     <nav><ul>
       <li><a href="#products">Products</a></li>
       <li><a href="#why">Why Us</a></li>
+      <li><a href="#gallery">Gallery</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul></nav>
@@ -203,6 +215,30 @@
     <div class="card"><h3>Countrywide delivery</h3><p>From Fort Portal to the site — farms, mines, workshops and water schemes anywhere in Uganda.</p></div>
   </div>
 </section>
+
+
+<section id="gallery">
+  <h2>Gallery</h2>
+  <p class="sub">Our shop and machines — real photos from our store in Fort Portal</p>
+  <div class="gallery-grid">
+    <a class="g-item" href="#g1"><img loading="lazy" src="assets/gallery/shop-interior.jpg" alt="Inside our machine shop - Nuwe Rugaba Machinery"><figcaption>Inside our machine shop</figcaption></a>
+    <a class="g-item" href="#g2"><img loading="lazy" src="assets/gallery/storefront.jpg" alt="Our shop, Moldina Street - Nuwe Rugaba Machinery"><figcaption>Our shop, Moldina Street</figcaption></a>
+    <a class="g-item" href="#g3"><img loading="lazy" src="assets/gallery/sprayer.jpg" alt="Knapsack power sprayers - Nuwe Rugaba Machinery"><figcaption>Knapsack power sprayers</figcaption></a>
+    <a class="g-item" href="#g4"><img loading="lazy" src="assets/gallery/grinder.jpg" alt="Makita angle grinders - Nuwe Rugaba Machinery"><figcaption>Makita angle grinders</figcaption></a>
+    <a class="g-item" href="#g5"><img loading="lazy" src="assets/gallery/posho-mill.jpg" alt="Posho mills in stock - Nuwe Rugaba Machinery"><figcaption>Posho mills in stock</figcaption></a>
+    <a class="g-item" href="#g6"><img loading="lazy" src="assets/gallery/breaker.jpg" alt="Demolition hammers - Nuwe Rugaba Machinery"><figcaption>Demolition hammers</figcaption></a>
+    <a class="g-item" href="#g7"><img loading="lazy" src="assets/gallery/drill-kit.jpg" alt="Cordless drill kits - Nuwe Rugaba Machinery"><figcaption>Cordless drill kits</figcaption></a>
+    <a class="g-item" href="#g8"><img loading="lazy" src="assets/gallery/rotary-hammer.jpg" alt="Rotary hammer drills - Nuwe Rugaba Machinery"><figcaption>Rotary hammer drills</figcaption></a>
+  </div>
+</section>
+  <div class="lightbox" id="g1"><a href="#gallery"><img src="assets/gallery/shop-interior.jpg" alt="Inside our machine shop"></a></div>
+  <div class="lightbox" id="g2"><a href="#gallery"><img src="assets/gallery/storefront.jpg" alt="Our shop, Moldina Street"></a></div>
+  <div class="lightbox" id="g3"><a href="#gallery"><img src="assets/gallery/sprayer.jpg" alt="Knapsack power sprayers"></a></div>
+  <div class="lightbox" id="g4"><a href="#gallery"><img src="assets/gallery/grinder.jpg" alt="Makita angle grinders"></a></div>
+  <div class="lightbox" id="g5"><a href="#gallery"><img src="assets/gallery/posho-mill.jpg" alt="Posho mills in stock"></a></div>
+  <div class="lightbox" id="g6"><a href="#gallery"><img src="assets/gallery/breaker.jpg" alt="Demolition hammers"></a></div>
+  <div class="lightbox" id="g7"><a href="#gallery"><img src="assets/gallery/drill-kit.jpg" alt="Cordless drill kits"></a></div>
+  <div class="lightbox" id="g8"><a href="#gallery"><img src="assets/gallery/rotary-hammer.jpg" alt="Rotary hammer drills"></a></div>
 
 <section id="faq">
   <h2>Frequently Asked Questions</h2>
