@@ -244,21 +244,21 @@
 <script>
 const WA = "https://wa.me/256782461461?text=";
 const products = [
- {cat:"pumps", img:"pump-sub.jpg", badge:"POPULAR", name:"Submersible Water Pumps", desc:"Deep borehole and well pumps for homes, farms and water schemes.", price:"3,800,000"},
- {cat:"pumps", img:"pump-high.jpg", badge:"DEAL", name:"High-Head Petrol Pumps", desc:"Long-distance transfer pumps pumping water over many kilometres.", price:"1,250,000"},
- {cat:"pumps", img:"pump-diesel.jpg", badge:"", name:"Diesel Water Pump Sets", desc:"Engine-driven pump sets for sites without electricity.", price:"2,900,000"},
- {cat:"pumps", img:"pump-surface.jpg", badge:"", name:"Surface & Booster Pumps", desc:"Clean-water surface pumps for tanks, boosting and transfer.", price:"850,000"},
- {cat:"power", img:"gen-diesel.jpg", badge:"BEST SELLER", name:"Diesel Generators", desc:"Standby and prime power gensets for workshops, sites and farms.", price:"9,500,000"},
- {cat:"power", img:"gen-petrol.jpg", badge:"", name:"Petrol Generators", desc:"Portable generators for home backup, events and field jobs.", price:"2,400,000"},
- {cat:"power", img:"gen-silent.jpg", badge:"PREMIUM", name:"Silent-Type Generators", desc:"Soundproofed gensets for hospitals, offices and estates.", price:"16,500,000"},
- {cat:"construction", img:"mixer.jpg", badge:"", name:"Concrete Mixers", desc:"Site mixers for construction projects, built for daily heavy use.", price:"4,900,000"},
- {cat:"construction", img:"vibrator.jpg", badge:"", name:"Concrete Vibrators", desc:"Poker vibrators for solid, bubble-free concrete pours.", price:"1,100,000"},
- {cat:"construction", img:"compactor.jpg", badge:"", name:"Plate Compactors", desc:"Soil and paving compactors for roadworks and building sites.", price:"6,800,000"},
- {cat:"workshop", img:"welder.jpg", badge:"HOT", name:"Welding Machines", desc:"Arc and inverter welding plants for workshops and fabrication.", price:"750,000"},
- {cat:"workshop", img:"compressor.jpg", badge:"", name:"Air Compressors", desc:"Compressors for tools, spray painting and construction work.", price:"2,800,000"},
- {cat:"workshop", img:"grinder.jpg", badge:"", name:"Angle Grinders & Power Tools", desc:"Grinders, drills and site power tools from trusted brands.", price:"180,000"},
- {cat:"farm", img:"tractor.jpg", badge:"NEW", name:"Walking Tractors / Power Tillers", desc:"Compact diesel tillers for smallholder farms and gardens.", price:"7,500,000"},
- {cat:"farm", img:"posho.jpg", badge:"", name:"Posho Mills & Processing", desc:"Milling and processing machinery for farms and village enterprises.", price:"3,200,000"},
+ {cat:"pumps", img:"submersible-pump.webp", badge:"POPULAR", name:"Submersible Water Pumps", desc:"Deep borehole and well pumps for homes, farms and water schemes.", price:"3,800,000"},
+ {cat:"pumps", img:"high-head-pump.webp", badge:"DEAL", name:"High-Head Petrol Pumps", desc:"Long-distance transfer pumps pumping water over many kilometres.", price:"1,250,000"},
+ {cat:"pumps", img:"diesel-water-pump.webp", badge:"", name:"Diesel Water Pump Sets", desc:"Engine-driven pump sets for sites without electricity.", price:"2,900,000"},
+ {cat:"pumps", img:"centrifugal-pump.webp", badge:"", name:"Surface & Booster Pumps", desc:"Clean-water surface pumps for tanks, boosting and transfer.", price:"850,000"},
+ {cat:"power", img:"diesel-generator.webp", badge:"BEST SELLER", name:"Diesel Generators", desc:"Standby and prime power gensets for workshops, sites and farms.", price:"9,500,000"},
+ {cat:"power", img:"petrol-generator.webp", badge:"", name:"Petrol Generators", desc:"Portable generators for home backup, events and field jobs.", price:"2,400,000"},
+ {cat:"power", img:"silent-generator.webp", badge:"PREMIUM", name:"Silent-Type Generators", desc:"Soundproofed gensets for hospitals, offices and estates.", price:"16,500,000"},
+ {cat:"construction", img:"concrete-mixer.webp", badge:"", name:"Concrete Mixers", desc:"Site mixers for construction projects, built for daily heavy use.", price:"4,900,000"},
+ {cat:"construction", img:"concrete-vibrator.webp", badge:"", name:"Concrete Vibrators", desc:"Poker vibrators for solid, bubble-free concrete pours.", price:"1,100,000"},
+ {cat:"construction", img:"plate-compactor.webp", badge:"", name:"Plate Compactors", desc:"Soil and paving compactors for roadworks and building sites.", price:"6,800,000"},
+ {cat:"workshop", img:"welding-machine.webp", badge:"HOT", name:"Welding Machines", desc:"Arc and inverter welding plants for workshops and fabrication.", price:"750,000"},
+ {cat:"workshop", img:"air-compressor.webp", badge:"", name:"Air Compressors", desc:"Compressors for tools, spray painting and construction work.", price:"2,800,000"},
+ {cat:"workshop", img:"angle-grinder.webp", badge:"", name:"Angle Grinders & Power Tools", desc:"Grinders, drills and site power tools from trusted brands.", price:"180,000"},
+ {cat:"farm", img:"walking-tractor.webp", badge:"NEW", name:"Walking Tractors / Power Tillers", desc:"Compact diesel tillers for smallholder farms and gardens.", price:"7,500,000"},
+ {cat:"farm", img:"posho-mill.webp", badge:"", name:"Posho Mills & Processing", desc:"Milling and processing machinery for farms and village enterprises.", price:"3,200,000"},
  {cat:"farm", icon:"\u{1F529}", badge:"", name:"Spare Parts & Servicing", desc:"Genuine spares, repairs and servicing for the machines we sell.", price:"0"}
 ];
 const grid = document.getElementById('pgrid');
@@ -292,5 +292,6 @@ function applyFilter(){
   document.getElementById('noresults').style.display = shown ? 'none' : 'block';
 }
 </script>
+<div style="text-align:center;color:#8a95a6;font-size:.72rem;padding:14px 20px;background:#0d0f14">Product photos: Wikimedia Commons &amp; Flickr contributors — CC BY / CC BY-SA / CC0 &amp; public domain. Full credits: <a href="CREDITS.md" style="color:#ffb347">photo credits</a></div>
 </body>
 </html>
