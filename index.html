@@ -145,36 +145,151 @@
 .lightbox{position:fixed;inset:0;background:rgba(10,10,14,.92);display:none;align-items:center;justify-content:center;z-index:99;padding:20px;}
 .lightbox:target{display:flex;}
 .lightbox img{max-width:94vw;max-height:92vh;border-radius:10px;box-shadow:0 8px 40px rgba(0,0,0,.6);}
+
+/* Jumia-style top bar */
+.jtop{background:#fff;color:#1a1a1a;position:sticky;top:0;z-index:60;box-shadow:0 2px 8px rgba(0,0,0,.12);}
+.jtop-row{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:10px 14px;}
+.jtop-menu{background:none;border:none;font-size:1.4rem;line-height:1;cursor:pointer;color:#1a1a1a;padding:4px 6px;}
+.jtop-brand{display:flex;align-items:center;gap:5px;font-weight:800;font-size:1.15rem;color:#1a1a1a;flex:1;}
+.jtop-brand img{width:30px;height:30px;border-radius:6px;object-fit:cover;}
+.jtop-brand .jstar{color:var(--orange);font-size:1rem;}
+.jtop-icons{display:flex;align-items:center;gap:16px;font-size:1.25rem;}
+.jtop-icons a{color:#1a1a1a;position:relative;}
+.jtop-cart::after{content:"";}
+.jtop-search-wrap{background:#fff;padding:0 14px 10px;}
+.jtop-search{max-width:1100px;margin:0 auto;display:flex;align-items:center;background:#eef0f3;border-radius:24px;padding:10px 16px;gap:10px;}
+.jtop-search input{flex:1;border:none;outline:none;font-size:.95rem;background:transparent;color:#222;}
+.jmenu{max-height:0;overflow:hidden;background:#fff;transition:max-height .25s ease;border-top:1px solid #eee;}
+.jmenu.open{max-height:260px;}
+.jmenu ul{list-style:none;max-width:1100px;margin:0 auto;padding:6px 14px 14px;}
+.jmenu li{padding:10px 0;border-bottom:1px solid #f1f1f1;}
+.jmenu a{color:#1a1a1a;font-weight:600;font-size:.95rem;}
+.jmenu .jmenu-call{display:inline-block;margin-top:8px;background:var(--orange);color:#fff;padding:9px 16px;border-radius:6px;font-weight:700;}
+@media(min-width:900px){
+  .jtop-menu{display:none;}
+  .jmenu{max-height:none !important;border-top:none;}
+  .jmenu ul{display:flex;gap:22px;padding:0;}
+  .jmenu li{border-bottom:none;padding:0;}
+}
+
+/* Banner carousel */
+.jcarousel{position:relative;max-width:1100px;margin:14px auto 0;overflow:hidden;border-radius:12px;}
+.jtrack{display:flex;transition:transform .5s ease;}
+.jslide{min-width:100%;position:relative;aspect-ratio:16/10;background-size:cover;background-position:center;display:flex;align-items:flex-end;}
+@media(min-width:700px){.jslide{aspect-ratio:16/6;}}
+.jslide::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.1),rgba(0,0,0,.78) 85%);}
+.jslide-text{position:relative;z-index:1;color:#fff;padding:20px;}
+.jslide-text .jtag{background:var(--orange);display:inline-block;padding:4px 12px;border-radius:4px;font-size:.72rem;font-weight:800;letter-spacing:.03em;margin-bottom:8px;}
+.jslide-text h3{font-size:1.5rem;margin-bottom:4px;line-height:1.15;}
+.jslide-text p{color:#e8e8e8;font-size:.88rem;margin-bottom:12px;max-width:360px;}
+.jslide-text a{background:#fff;color:#1a1a1a;font-weight:800;padding:9px 18px;border-radius:5px;font-size:.85rem;display:inline-block;}
+.jdots{position:absolute;bottom:10px;right:14px;display:flex;gap:6px;z-index:2;}
+.jdot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer;}
+.jdot.active{background:var(--orange);width:18px;border-radius:4px;}
+
+/* Promo tiles (2-circle Jumia block) */
+.promo-tiles{max-width:1100px;margin:22px auto 0;padding:0 14px;}
+.promo-tiles h4{text-align:center;color:var(--orange);font-weight:800;font-size:1.1rem;margin-bottom:16px;}
+.ptile-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.ptile{border-radius:12px;padding:22px 16px 18px;text-align:center;display:block;}
+.ptile.a{background:#fdeee0;}
+.ptile.b{background:#fde3df;}
+.ptile .pcircle{width:72px;height:72px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:1.9rem;margin:0 auto 10px;box-shadow:0 2px 8px rgba(0,0,0,.08);}
+.ptile b{display:block;color:#1a1a1a;font-size:1.02rem;margin-bottom:3px;}
+.ptile span{color:#555;font-size:.82rem;}
+
+/* Flash / popular strip */
+.flash{background:#e4272b;padding:22px 0 26px;margin-top:28px;}
+.flash-head{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 16px 14px;color:#fff;}
+.flash-head h3{font-size:1.15rem;font-weight:800;}
+.flash-head span{font-size:.78rem;color:#ffd9d9;}
+.flashgrid{max-width:1100px;margin:0 auto;display:flex;gap:12px;overflow-x:auto;padding:0 16px 6px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;}
+.flashgrid::-webkit-scrollbar{height:5px;}
+.flashgrid .pcard{min-width:165px;max-width:165px;scroll-snap-align:start;flex-shrink:0;}
+.flashgrid .pcard .pimg{height:120px;}
+.flashgrid .pcard .pbody{padding:11px;}
+.flashgrid .pcard .pname{font-size:.82rem;}
+.flashgrid .pcard .pdesc{display:none;}
+.only-mobile{display:none;}
+@media(max-width:899px){.only-mobile{display:list-item;}}
 </style>
 </head>
 <body>
 
 <div class="promo">WhatsApp for prices &middot; Delivery countrywide &middot; Mining, agriculture, construction &amp; water projects</div>
 
-<header>
-  <div class="nav">
-    <div class="brand"><img src="assets/logo.png" alt="Nuwe Rugaba Machinery logo"> Nuwe Rugaba Machinery</div>
-    <nav><ul>
-      <li><a href="#products">Products</a></li>
-      <li><a href="#why">Why Us</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#faq">FAQ</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul></nav>
-    <a class="call-btn" href="tel:+256782461461">Call Us</a>
+<header class="jtop">
+  <div class="jtop-row">
+    <button class="jtop-menu" onclick="toggleMenu()" aria-label="Menu">&#9776;</button>
+    <a href="#" class="jtop-brand"><img src="assets/logo.png" alt="Nuwe Rugaba Machinery logo">Nuwe Rugaba<span class="jstar">&#9733;</span></a>
+    <div class="jtop-icons">
+      <a href="tel:+256782461461" aria-label="Call us">&#128222;</a>
+      <a href="https://wa.me/256782461461?text=Hello%20Nuwe%20Rugaba%20Machinery%2C%20I%20have%20an%20enquiry." target="_blank" rel="noopener" class="jtop-cart" aria-label="WhatsApp us">&#128722;</a>
+    </div>
+  </div>
+  <nav id="jmenu" class="jmenu"><ul>
+    <li><a href="#products" onclick="toggleMenu()">Products</a></li>
+    <li><a href="#why" onclick="toggleMenu()">Why Us</a></li>
+    <li><a href="#gallery" onclick="toggleMenu()">Gallery</a></li>
+    <li><a href="#faq" onclick="toggleMenu()">FAQ</a></li>
+    <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+    <li class="only-mobile"><a class="jmenu-call" href="tel:+256782461461">Call Us</a></li>
+  </ul></nav>
+  <div class="jtop-search-wrap">
+    <div class="jtop-search">
+      <span aria-hidden="true">&#128269;</span>
+      <input type="search" id="psearch" placeholder="Search products, brands and categories" oninput="applyFilter()">
+    </div>
   </div>
 </header>
 
-<section class="hero">
-  <img src="assets/logo.png" alt="Nuwe Rugaba Machinery">
-  <h1>Nuwe Rugaba Machinery</h1>
-  <div class="hero-role">Water Pumps &middot; Generators &middot; Construction Machinery</div>
-  <p>Machinery built for real work — mining, agriculture, construction sites, workshops and large-scale water transfer. Quality machines, honest advice and countrywide delivery, from Fort Portal City.</p>
-  <div class="hero-cta">
-    <a class="btn btn-primary" href="https://wa.me/256782461461?text=Hello%20Nuwe%20Rugaba%20Machinery%2C%20I%20need%20a%20quotation." target="_blank" rel="noopener">Chat on WhatsApp</a>
-    <a class="btn btn-outline" href="#contact">Find Us</a>
+<div class="promo" style="text-align:center">WhatsApp for prices &middot; Delivery countrywide &middot; Mining, agriculture, construction &amp; water projects</div>
+
+<div class="jcarousel">
+  <div class="jtrack" id="jtrack">
+    <div class="jslide" style="background-image:url('assets/gallery/shop-interior.jpg')">
+      <div class="jslide-text">
+        <span class="jtag">FORT PORTAL</span>
+        <h3>Nuwe Rugaba Machinery</h3>
+        <p>Genuine machines, honest advice and prices that make sense for the work you do.</p>
+        <a href="https://wa.me/256782461461?text=Hello%20Nuwe%20Rugaba%20Machinery%2C%20I%20need%20a%20quotation." target="_blank" rel="noopener">Chat on WhatsApp</a>
+      </div>
+    </div>
+    <div class="jslide" style="background-image:url('assets/gallery/sprayer.jpg')">
+      <div class="jslide-text">
+        <span class="jtag">NEW ARRIVALS</span>
+        <h3>Sprayers, Breakers &amp; Drill Kits</h3>
+        <p>Knapsack sprayers, demolition hammers and cordless drill kits now in stock.</p>
+        <a href="#products">View Machines</a>
+      </div>
+    </div>
+    <div class="jslide" style="background-image:url('assets/storefront.jpg')">
+      <div class="jslide-text">
+        <span class="jtag">TRADE &amp; WHOLESALE</span>
+        <h3>Buying for a Site or Shop?</h3>
+        <p>Trade and wholesale pricing available on bulk machine orders.</p>
+        <a href="https://wa.me/256782461461?text=Hello%20Nuwe%20Rugaba%20Machinery%2C%20I%27d%20like%20trade%2Fwholesale%20pricing." target="_blank" rel="noopener">Get a Quote</a>
+      </div>
+    </div>
   </div>
-</section>
+  <div class="jdots" id="jdots"></div>
+</div>
+
+<div class="promo-tiles">
+  <h4>Find all your machines in one place</h4>
+  <div class="ptile-grid">
+    <a class="ptile a" href="https://wa.me/256782461461?text=Hello%20Nuwe%20Rugaba%20Machinery%2C%20I%27d%20like%20trade%2Fwholesale%20pricing." target="_blank" rel="noopener">
+      <div class="pcircle">&#128176;</div>
+      <b>Trade &amp; Wholesale</b>
+      <span>Buying in bulk? Ask us</span>
+    </a>
+    <a class="ptile b" href="#products">
+      <div class="pcircle">&#128295;</div>
+      <b>Spares &amp; Service</b>
+      <span>Keep your machine running</span>
+    </a>
+  </div>
+</div>
 
 <div class="strip">
   <div class="strip-inner">
@@ -185,14 +300,18 @@
   </div>
 </div>
 
+<div class="flash">
+  <div class="flash-head">
+    <h3>&#128293; Popular This Week</h3>
+    <span>Swipe to see more &rarr;</span>
+  </div>
+  <div class="flashgrid" id="flashgrid"></div>
+</div>
+
 <div class="shop" id="products">
   <h2>Machinery We Supply</h2>
   <p class="sub">Reliable equipment for mines, farms, construction sites and water projects</p>
   <p class="sub" style="margin:-22px 0 26px;font-size:.82rem;">Indicative prices — final quote depends on your specs. Trade &amp; wholesale discounts available.</p>
-  <div class="search-bar">
-    <span aria-hidden="true">&#128269;</span>
-    <input type="search" id="psearch" placeholder="Search machines: pump, generator, mixer, welder..." oninput="applyFilter()">
-  </div>
   <div class="cats">
     <button class="cat-chip active" data-cat="all" onclick="filterCat('all', this)">All</button>
     <button class="cat-chip" data-cat="pumps" onclick="filterCat('pumps', this)">Water Pumps</button>
@@ -330,6 +449,35 @@ function applyFilter(){
     if(show) shown++;
   });
   document.getElementById('noresults').style.display = shown ? 'none' : 'block';
+}
+
+function toggleMenu(){
+  document.getElementById('jmenu').classList.toggle('open');
+}
+// Carousel
+(function(){
+  const track = document.getElementById('jtrack');
+  const slides = track.children.length;
+  const dotsWrap = document.getElementById('jdots');
+  let i = 0;
+  for(let d=0; d<slides; d++){
+    const dot = document.createElement('div');
+    dot.className = 'jdot' + (d===0 ? ' active' : '');
+    dot.onclick = () => goTo(d);
+    dotsWrap.appendChild(dot);
+  }
+  function goTo(n){
+    i = n;
+    track.style.transform = 'translateX(-' + (i*100) + '%)';
+    [...dotsWrap.children].forEach((d,idx)=>d.classList.toggle('active', idx===i));
+  }
+  setInterval(()=> goTo((i+1) % slides), 5000);
+})();
+// Flash / popular strip - reuse products with a badge
+const flashGrid = document.getElementById('flashgrid');
+if(flashGrid){
+  const popular = products.filter(p => p.badge).slice(0, 8);
+  flashGrid.innerHTML = popular.map(card).join('');
 }
 </script>
 </body>
