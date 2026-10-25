@@ -467,7 +467,7 @@
 </div>
 
 <script>
-const WA = "https://wa.me/256782461461?text=";
+let WA = "https://wa.me/256782461461?text=";
 const products = [
  {cat:"pumps", img:"pump-sub.jpg", badge:"POPULAR", name:"Submersible Water Pumps", desc:"Deep borehole and well pumps for homes, farms and water schemes.", price:"3,800,000"},
  {cat:"pumps", img:"pump-high.jpg", badge:"DEAL", name:"High-Head Petrol Pumps", desc:"Long-distance transfer pumps pumping water over many kilometres.", price:"1,250,000"},
@@ -544,10 +544,44 @@ function toggleMenu(){
 })();
 // Flash / popular strip - reuse products with a badge
 const flashGrid = document.getElementById('flashgrid');
-if(flashGrid){
-  const popular = products.filter(p => p.badge).slice(0, 8);
-  flashGrid.innerHTML = popular.map(card).join('');
+function renderAll(){
+  grid.innerHTML = products.map(card).join('');
+  if(flashGrid){
+    const popular = products.filter(p => p.badge).slice(0, 8);
+    flashGrid.innerHTML = popular.map(card).join('');
+  }
+  applyFilter();
 }
+renderAll();
+// Live data from the admin dashboard (falls back to the catalogue above if offline)
+fetch("https://derick-ai-775511bf.base44.app/functions/nrmPublic")
+  .then(r => r.json())
+  .then(d => {
+    if (d.products && d.products.length){
+      products = d.products;
+      renderAll();
+    }
+    const s = d.settings;
+    if (s){
+      if (s.waNumber) WA = "https://wa.me/" + s.waNumber + "?text=";
+      if (s.heroTitle){
+        const h = document.querySelector('#jtrack h1');
+        if (h) h.textContent = s.heroTitle;
+      }
+      if (s.heroSub){
+        const p = document.querySelector('#jtrack .jlead');
+        if (p) p.textContent = s.heroSub;
+      }
+      if (s.announcement){
+        const b = document.createElement('div');
+        b.style.cssText = 'background:var(--orange);color:#fff;text-align:center;font-weight:700;font-size:.9rem;padding:9px 14px';
+        b.textContent = s.announcement;
+        document.body.prepend(b);
+      }
+      renderAll();
+    }
+  })
+  .catch(()=>{});
 </script>
 </body>
 </html>

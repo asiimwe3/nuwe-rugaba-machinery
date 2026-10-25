@@ -5,3 +5,6 @@ User-agent: Googlebot
 Allow: /
 
 Sitemap: https://nuwerugabamachinary.com/sitemap.xml
+
+User-agent: *
+Disallow: /admin.html
