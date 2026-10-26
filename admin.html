@@ -62,7 +62,10 @@
     <h2>Sign in to manage the website</h2>
     <div class="msg err" id="loginMsg"></div>
     <label>Admin password</label>
-    <input type="password" id="pw" placeholder="Enter password" onkeydown="if(event.key==='Enter')login()">
+    <div style="position:relative">
+      <input type="password" id="pw" placeholder="Enter password" style="padding-right:44px" onkeydown="if(event.key==='Enter')login()">
+      <button type="button" onclick="togglePw()" aria-label="Show password" style="position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:transparent;cursor:pointer;font-size:1.05rem;padding:4px 6px">&#128065;</button>
+    </div>
     <br><br>
     <button class="btn" style="width:100%" onclick="login()">Sign in</button>
   </div>
@@ -333,6 +336,11 @@ async function saveSettings(){
 }
 
 // auto-login if a session password exists
+function togglePw(){
+  const el = document.getElementById('pw');
+  el.type = el.type === 'password' ? 'text' : 'password';
+}
+
 if (PW) login();
 </script>
 </body>
